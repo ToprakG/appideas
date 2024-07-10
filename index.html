@@ -35,6 +35,10 @@
             line-height: 1.5;
         }
 
+        .self-text {
+            font-size: 15px;
+        }
+
         .upvote-btn, .downvote-btn {
             background-color: transparent;
             color: #fff;
@@ -55,7 +59,7 @@
         h1 {
             position: absolute;
             top: 20px;
-            right: 600px;
+            right: 615px;
         }
         h3 {
             position: absolute;
@@ -75,6 +79,7 @@
 
     <div class="container" id="container">
         <div class="shower-thought" id="thought"></div>
+        <div class="self-text" id="self-text"></div>
         <button id="upvote-btn" class="upvote-btn" onclick="upvote()">Upvote</button>            <button id="downvote-btn" class="downvote-btn" onclick="downvote()">Downvote</button>
     </div>
 
@@ -86,7 +91,9 @@
                 .then(response => response.json())
                 .then(data => {
                     const showerThought = data[0]?.data.children[0]?.data.title;
+
                     document.getElementById('thought').textContent = showerThought;
+                    document.getElementById('self-text').textContent = data[0]?.data.children[0]?.data.selftext
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
@@ -119,3 +126,4 @@
     </script>
 </body>
 </html>
+
